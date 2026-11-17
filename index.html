@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple productivity app to organize tasks, priorities and deadlines.">
+  <title>FocusFlow — Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="FocusFlow home">
+        <span class="brand-mark">✓</span>
+        <span>FocusFlow</span>
+      </a>
+      <button id="themeBtn" class="icon-button" type="button" aria-label="Switch to dark mode" title="Toggle theme">☾</button>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">MAKE EVERY DAY COUNT</p>
+      <h1>Your tasks, <span>under control.</span></h1>
+      <p class="hero-copy">A little progress each day adds up to big results.</p>
+    </section>
+
+    <section class="stats-grid" aria-label="Task statistics">
+      <article class="stat-card">
+        <span class="stat-label">Total tasks</span>
+        <strong id="total">0</strong>
+        <span class="stat-icon">▤</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Completed</span>
+        <strong id="completed">0</strong>
+        <span class="stat-icon green">✓</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Remaining</span>
+        <strong id="remaining">0</strong>
+        <span class="stat-icon orange">◷</span>
+      </article>
+    </section>
+
+    <section class="progress-card" aria-label="Overall progress">
+      <div class="progress-heading">
+        <div>
+          <h2>Your progress</h2>
+          <p id="progressMessage">Start with one small task.</p>
+        </div>
+        <strong id="progress">0%</strong>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Task completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+        <div id="progressBar" class="progress-fill"></div>
+      </div>
+    </section>
+
+    <section class="task-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR WORKSPACE</p>
+          <h2>Task list</h2>
+        </div>
+        <span id="taskCountLabel" class="task-count">0 tasks</span>
+      </div>
+
+      <form id="taskForm" class="task-form">
+        <label class="sr-only" for="taskInput">Task name</label>
+        <input id="taskInput" type="text" maxlength="120" placeholder="What needs to get done?" autocomplete="off" required>
+        <label class="sr-only" for="dueDate">Due date</label>
+        <input id="dueDate" class="date-input" type="date" aria-label="Due date">
+        <label class="sr-only" for="priority">Priority</label>
+        <select id="priority" aria-label="Task priority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button id="submitBtn" class="primary-button" type="submit">＋ Add task</button>
+        <button id="cancelEditBtn" class="secondary-button hidden" type="button">Cancel</button>
+      </form>
+
+      <div class="toolbar">
+        <div class="filters" role="group" aria-label="Filter tasks">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="active">Active</button>
+          <button class="filter-button" type="button" data-filter="completed">Completed</button>
+        </div>
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search tasks..." aria-label="Search tasks">
+        </label>
+      </div>
+
+      <ul id="taskList" class="task-list" aria-live="polite"></ul>
+
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">✦</div>
+        <h3>No tasks here yet</h3>
+        <p>Add a task above and make today productive.</p>
+      </div>
+
+      <div class="panel-footer">
+        <span id="achievementText">🌱 Every accomplishment starts with the decision to try.</span>
+        <button id="clearCompletedBtn" class="text-button" type="button">Clear completed</button>
+      </div>
+    </section>
+
+    <footer class="app-footer">Your personal space to plan, focus and finish.</footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
